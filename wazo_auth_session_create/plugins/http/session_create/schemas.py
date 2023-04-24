@@ -7,10 +7,11 @@ from wazo_auth.schemas import BaseSchema
 
 
 class SessionCreateSchema(BaseSchema):
-    uuid = fields.String()
-    tenant_uuid = fields.String()
-    user_uuid = fields.String()
-    mobile = fields.Boolean()
+    uuid = fields.String(required=True)
+    tenant_uuid = fields.String(required=True)
+    user_uuid = fields.String(required=True)
+    mobile = fields.Boolean(required=True)
+    expiration = fields.Integer(required=True)
 
 
 session_create_schema = SessionCreateSchema()
