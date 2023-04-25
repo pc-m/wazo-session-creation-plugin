@@ -10,7 +10,7 @@ class Plugin:
         session_service = dependencies['session_service']
 
         api.add_resource(
-            http.Sessions,
+            http.Sessions2,
             '/sessions2',
             resource_class_args=[session_service],
         )

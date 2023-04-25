@@ -17,7 +17,7 @@ from .schemas import session_create_schema
 DEFAULT_XIVO_UUID = os.getenv('XIVO_UUID')
 
 
-class Sessions(http.AuthResource):
+class Sessions2(http.AuthResource):
     def __init__(self, session_service):
         self.session_service = session_service
         self.db_session = self.session_service._dao.session.session
