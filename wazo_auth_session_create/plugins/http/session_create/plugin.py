@@ -11,6 +11,6 @@ class Plugin:
 
         api.add_resource(
             http.Sessions2,
-            '/sessions2',
+            '/sessions',
             resource_class_args=[session_service],
         )
