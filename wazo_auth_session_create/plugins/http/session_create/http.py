@@ -12,6 +12,9 @@ from wazo_auth import exceptions, http, schemas
 from wazo_auth.flask_helpers import Tenant
 from wazo_auth.database.models import Session, Token
 
+from xivo_bus.resources.auth.events import SessionCreatedEvent
+
+
 from .schemas import session_create_schema
 
 DEFAULT_XIVO_UUID = os.getenv('XIVO_UUID')
@@ -59,4 +62,11 @@ class Sessions2(http.AuthResource):
                     {'session_uuid': body['uuid']},
                     'sessions2',
                 )
+        event = SessionCreatedEvent(
+            body['uuid'],
+            body['mobile'],
+            body['tenant_uuid'],
+            body['user_uuid'],
+        )
+        self.session_service._bus_publisher.publish(event)
         return body, 200
